@@ -71,4 +71,25 @@ body {
 .game-wrapper .info-wrapper .score-wrapper .panel .title {
   margin: 2px 0;
 }
+
+.game-wrapper #puzzle {
+  position: relative;
+  width: 35%;
+  font-size: 32px;
+  margin: 40px auto;
+}
+
+.game-wrapper .empty {
+  background: transparent;
+}
+
+.game-wrapper .puzzle-piece {
+  border: 2px solid black;
+  height: 120px;
+  width: 120px;
+  border-radius: 4px;
+  line-height: 100px;
+  position: absolute;
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
