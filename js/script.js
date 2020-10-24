@@ -21,6 +21,10 @@ var finalMoves;
 
 
 
+
+
+
+
   
 
 /***!!! FUNCTIONS !!!***/
@@ -102,4 +106,17 @@ function getAdjacentSquares(square){
 /** Get and return empty square **/
 function getEmptySquare(){
     return puzzle.querySelector(".empty");
+}
+/** Get empty square if adjacent to current square **/
+function getEmptyAdjacentSquare(square){
+    // Gets all adj sqaures
+    var adj = getAdjacentSquares(square);
+    // Search for empty cell
+    for(var i = 0; i < adj.length; i++){
+        if(adj[i].className == "empty"){
+            return adj[i];
+        }
+    }
+    // Empty square not found
+    return false;
 }
