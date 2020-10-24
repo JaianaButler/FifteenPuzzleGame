@@ -23,8 +23,6 @@ var finalMoves;
 
 
 
-
-
   
 
 /***!!! FUNCTIONS !!!***/
@@ -140,4 +138,28 @@ function getEmptyAdjacentSquare(square){
     }
     // Empty square not found
     return false;
+}
+/** Shuffle puzzle **/
+function shuffle(){
+    if(!startingState){
+        return;
+    }
+
+    startingState = false;
+
+    var adjacent, rand, randSquare;
+
+    for(var i = 0; i < 300; i++){
+        adjacent = getAdjacentSquares(getEmptySquare());
+        rand = Math.floor(Math.random() * adjacent.length);
+        randSquare = adjacent[rand];
+
+        shiftSquare(randSquare);
+    }
+    startingState = true;
+
+    //Restart timer and moves
+    restartStats();
+    clearInterval(interval);
+    startTimer();
 }
