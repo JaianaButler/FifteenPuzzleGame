@@ -1,3 +1,9 @@
+/*
+TO-DO: 
+    Puzzle overlay to prevent interaction until shuffle
+    Fix timer display 
+*/
+
 /***!!! VARIABLES !!!***/
 var puzzle = document.getElementById("puzzle");
 var puzzlePieces = puzzle.children;
@@ -102,9 +108,9 @@ function shiftSquare(square){
             
             moveCounter();
 
-            /*if(startingState){
+            if(startingState){
                 checkSolved();
-            }*/
+            }
         }
     }
 }
@@ -219,6 +225,6 @@ function checkSolved(){
     moves = 0; // IS THIS NEEDED?
     second = 0;
     minute = 0;
-    timer.innerHTML = "0 mins 0 secs";
-    counter.innerHTML = moves + " Move(s)";
+    timer.innerHTML = "00:00";
+    counter.innerHTML = moves;
 }
