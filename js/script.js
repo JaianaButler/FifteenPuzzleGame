@@ -22,8 +22,6 @@ var finalMoves;
 
 
 
-
-
   
 
 /***!!! FUNCTIONS !!!***/
@@ -56,4 +54,20 @@ function initialize(){
 
     timer.innerHTML = "00:00";
 	counter.innerHTML = moves;
+}
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute + ":" + second;
+        second++;
+        if(second == 60){
+            minute++;
+            second = 0;
+        }
+    },1000);
+}
+
+/** Increment move counter **/
+function moveCounter(){
+    moves++;
+    counter.innerHTML = moves;
 }
