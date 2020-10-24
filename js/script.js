@@ -21,10 +21,6 @@ var finalMoves;
 
 
 
-
-
-
-
   
 
 /***!!! FUNCTIONS !!!***/
@@ -79,7 +75,30 @@ function moveCounter(){
 function getSquare(row, col){
     return document.getElementById("piece_" + row + "_" + col);
 }
+/** Return array of puzzle squares adjacent to current square **/
+function getAdjacentSquares(square){
+    var id = square.id.split("_");
+    // Get square position
+    var row = parseInt(id[1]);
+    var col = parseInt(id[2]);
+    var adj = [];
 
+    // Get all adj
+    if(row > 1){
+        adj.push(getSquare(row - 1, col)); // Up
+    }
+    if(row < 4){
+        adj.push(getSquare(row + 1, col)); // Down
+    }
+    if(col < 4){
+        adj.push(getSquare(row, col + 1)); // Left
+    }
+    if(col > 1){
+        adj.push(getSquare(row, col - 1)); // Right
+    }
+    return adj;
+
+}
 /** Get and return empty square **/
 function getEmptySquare(){
     return puzzle.querySelector(".empty");
