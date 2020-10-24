@@ -101,6 +101,10 @@ function shiftSquare(square){
             emptySquare.id = tempid;
             
             moveCounter();
+
+            /*if(startingState){
+                checkSolved();
+            }*/
         }
     }
 }
@@ -180,4 +184,41 @@ function restartStats(){
     timer.innerHTML = "00:00";
     moves = 0;
     counter.innerHTML = moves;
+}
+/** Check order of squares to confirm solved **/
+function checkSolved(){
+    startingState = true;
+    // If empty cell not in proper position for solution, assume not solved and return
+    if(getSquare(4, 4).className != "empty"){
+        return;
+    }
+
+    var k = 1;
+    // Check all squares in correct position
+    for(var i = 1; i <= 4; i++){
+        for(var j = 1; j <= 4; j++){
+            if(k <= 15 && getSquare(i, j).innerHTML != k.toString()){ // Compares k (starting from 1) to numbered innerHTML value of each square 
+                return; // Order not correct
+            }
+            k++;
+        }
+    }
+
+    /** Executes below only after confirmed solved **/
+    // Store final time and moves
+    finalTime = timer.innerHTML;
+    finalMoves = counter.innerHTML;
+    // Display time/moves and re-shuffles puzzle after few seconds
+    setTimeout(function(){
+        if(confirm("Time: " + finalTime + "\nMoves: " + finalMoves)){
+            shuffle();
+        }
+    }, 1200);
+    
+    // Reset timer
+    moves = 0; // IS THIS NEEDED?
+    second = 0;
+    minute = 0;
+    timer.innerHTML = "0 mins 0 secs";
+    counter.innerHTML = moves + " Move(s)";
 }
