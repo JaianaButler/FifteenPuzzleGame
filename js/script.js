@@ -1,7 +1,6 @@
 /*
-TO-DO: 
-    Puzzle overlay to prevent interaction until shuffle
-    Change win display
+KNOWN ISSUES: 
+    After alert box closed, timer restarts but starts counting w/o having pressed shuffle
 */
 
 /***!!! VARIABLES !!!***/
@@ -97,7 +96,7 @@ function shiftSquare(square){
             var temptop = square.style.top;
             var templeft = square.style.left;
             var tempid = square.id;
-            // Swap id and style
+            /* Swap id and style */
             square.style.top = emptySquare.style.top;
             square.style.left = emptySquare.style.left;
             square.id = emptySquare.id;
@@ -121,12 +120,12 @@ function getSquare(row, col){
 /** Return array of puzzle squares adjacent to current square **/
 function getAdjacentSquares(square){
     var id = square.id.split("_");
-    // Get square position
+    /* Get square position */
     var row = parseInt(id[1]);
     var col = parseInt(id[2]);
     var adj = [];
 
-    // Get all adj
+    /* Get all adj */
     if(row > 1){
         adj.push(getSquare(row - 1, col)); // Up
     }
@@ -148,15 +147,15 @@ function getEmptySquare(){
 }
 /** Get empty square if adjacent to current square **/
 function getEmptyAdjacentSquare(square){
-    // Gets all adj sqaures
+    /* Gets all adj sqaures */
     var adj = getAdjacentSquares(square);
-    // Search for empty cell
+    /* Search for empty cell */
     for(var i = 0; i < adj.length; i++){
         if(adj[i].className == "empty"){
             return adj[i];
         }
     }
-    // Empty square not found
+    /* Empty square not found */
     return false;
 }
 /** Shuffle puzzle **/
@@ -178,7 +177,9 @@ function shuffle(){
     }
     startingState = true;
 
-    //Restart timer and moves
+    overlayOff();
+
+    /* Restart timer and moves */
     restartStats();
     clearInterval(interval);
     startTimer();
@@ -194,13 +195,13 @@ function restartStats(){
 /** Check order of squares to confirm solved **/
 function checkSolved(){
     startingState = true;
-    // If empty cell not in proper position for solution, assume not solved and return
+    /* If empty cell not in proper position for solution, assume not solved and return */
     if(getSquare(4, 4).className != "empty"){
         return;
     }
 
     var k = 1;
-    // Check all squares in correct position
+    /* Check all squares in correct position */
     for(var i = 1; i <= 4; i++){
         for(var j = 1; j <= 4; j++){
             if(k <= 15 && getSquare(i, j).innerHTML != k.toString()){ // Compares k (starting from 1) to numbered innerHTML value of each square 
@@ -211,19 +212,24 @@ function checkSolved(){
     }
 
     /** Executes below only after confirmed solved **/
-    // Store final time and moves
+    /* Store final time and moves */
     finalTime = timer.innerHTML;
     finalMoves = counter.innerHTML;
-    // Display time/moves and re-shuffles puzzle after few seconds
+
+    /* Display time/moves and re-shuffles puzzle after few seconds */
     setTimeout(function(){
-        confirm("Time: " + finalTime + "\nMoves: " + finalMoves);
-    }, 1200);
+        alert("Time: " + finalTime + "\nMoves: " + finalMoves);
+    }, 500);
+
+    overlayOn(); // Overlay on to prevent interaction after solved
     
-    /* Reset timer
-    moves = 0; // IS THIS NEEDED?
-    second = 0;
-    minute = 0;
-    timer.innerHTML = "00:00";
-    counter.innerHTML = moves;
-    */
+    /* Reset timer and moves */
+    restartStats();
+}
+
+function overlayOff(){
+    document.getElementById("overlay").style.display = "none";
+}
+function overlayOn(){
+    document.getElementById("overlay").style.display = "block";
 }
