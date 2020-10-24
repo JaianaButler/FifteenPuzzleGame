@@ -1,7 +1,7 @@
 /*
 TO-DO: 
     Puzzle overlay to prevent interaction until shuffle
-    Fix timer display 
+    Change win display
 */
 
 /***!!! VARIABLES !!!***/
@@ -74,7 +74,7 @@ function initialize(){
 }
 function startTimer(){
     interval = setInterval(function(){
-        timer.innerHTML = minute + ":" + second;
+        timer.innerHTML = minute.toLocaleString(undefined, {minimumIntegerDigits: 2}) + ":" + second.toLocaleString(undefined, {minimumIntegerDigits: 2});
         second++;
         if(second == 60){
             minute++;
@@ -216,15 +216,14 @@ function checkSolved(){
     finalMoves = counter.innerHTML;
     // Display time/moves and re-shuffles puzzle after few seconds
     setTimeout(function(){
-        if(confirm("Time: " + finalTime + "\nMoves: " + finalMoves)){
-            shuffle();
-        }
+        confirm("Time: " + finalTime + "\nMoves: " + finalMoves);
     }, 1200);
     
-    // Reset timer
+    /* Reset timer
     moves = 0; // IS THIS NEEDED?
     second = 0;
     minute = 0;
     timer.innerHTML = "00:00";
     counter.innerHTML = moves;
+    */
 }
