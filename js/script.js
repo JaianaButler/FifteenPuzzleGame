@@ -23,6 +23,8 @@ var finalMoves;
 
 
 
+
+
   
 
 /***!!! FUNCTIONS !!!***/
@@ -149,6 +151,7 @@ function shuffle(){
 
     var adjacent, rand, randSquare;
 
+
     for(var i = 0; i < 300; i++){
         adjacent = getAdjacentSquares(getEmptySquare());
         rand = Math.floor(Math.random() * adjacent.length);
@@ -162,4 +165,12 @@ function shuffle(){
     restartStats();
     clearInterval(interval);
     startTimer();
+}
+
+function restartStats(){
+    second = 0;
+    minute = 0;
+    timer.innerHTML = "00:00";
+    moves = 0;
+    counter.innerHTML = moves;
 }
