@@ -1,9 +1,14 @@
+$base-color: rgb(107, 107, 160);
+$wrapper-dark: rgb(55, 55, 87);
+$tile-color: rgb(245, 164, 13);
+$font-light: rgb(212, 212, 212);
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    background: rgb(107, 107, 160);
+    background: $base-color;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
@@ -18,8 +23,7 @@ body {
         margin: 20px auto;
 
         .info-inner {
-            background: rgb(55, 55, 87);
-            border-radius: 4px;
+            background: $wrapper-dark;
             text-align: center;
         }
 
@@ -31,7 +35,7 @@ body {
                 font-size: 20px;
                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                 font-weight: bold;
-                color: rgb(212, 212, 212);
+                color: $font-light;
                 background: transparent;
                 border: none;
                 width: 100%;
@@ -50,7 +54,7 @@ body {
 
             .panel {
                 font-size: 20px;
-                color: rgb(212, 212, 212);
+                color: $font-light;
                 
                 .title {
                     margin: 2px 0;
@@ -66,16 +70,32 @@ body {
             }
         }
     }
-
-    #puzzle {
+    .puzzle-wrapper {
         position: relative;
-        width: 35%;
-        font-size: 32px;
+        width: 550px;
+        height: 550px;
+        background: $wrapper-dark;
         margin: 40px auto;
-    }
 
-    #puzzle div {
-       
+        #puzzle {
+            position: relative;
+            top: 20px;
+            left: 20px;
+            font-size: 32px;
+            //color: $font-light;
+        }
+    }
+    
+    #overlay {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.25);
+        color: $font-light;
+        font-size: 32px;
+        z-index: 2;
+        text-align: center;
+        line-height: 520px;
     }
     
     .empty {
@@ -83,12 +103,15 @@ body {
     }
 
     .puzzle-piece{
-        border: 2px solid black;
         height: 120px;
         width: 120px;
-        border-radius: 4px;
         line-height: 100px;
         position: absolute;
         text-align: center;
+        background: $tile-color;
     }
+}
+
+.info-inner, .puzzle-wrapper, .puzzle-piece, #overlay {
+    border-radius: 4px;
 }

@@ -27,7 +27,6 @@ body {
 
 .game-wrapper .info-wrapper .info-inner {
   background: #373757;
-  border-radius: 4px;
   text-align: center;
 }
 
@@ -72,11 +71,31 @@ body {
   margin: 2px 0;
 }
 
-.game-wrapper #puzzle {
+.game-wrapper .puzzle-wrapper {
   position: relative;
-  width: 35%;
-  font-size: 32px;
+  width: 550px;
+  height: 550px;
+  background: #373757;
   margin: 40px auto;
+}
+
+.game-wrapper .puzzle-wrapper #puzzle {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  font-size: 32px;
+}
+
+.game-wrapper #overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  color: #d4d4d4;
+  font-size: 32px;
+  z-index: 2;
+  text-align: center;
+  line-height: 520px;
 }
 
 .game-wrapper .empty {
@@ -84,12 +103,15 @@ body {
 }
 
 .game-wrapper .puzzle-piece {
-  border: 2px solid black;
   height: 120px;
   width: 120px;
-  border-radius: 4px;
   line-height: 100px;
   position: absolute;
   text-align: center;
+  background: #f5a40d;
+}
+
+.info-inner, .puzzle-wrapper, .puzzle-piece, #overlay {
+  border-radius: 4px;
 }
 /*# sourceMappingURL=style.css.map */
