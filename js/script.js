@@ -22,7 +22,15 @@ var finalMoves;
 
 
 
-
+/***!!! IMPLEMENTATION !!!***/
+puzzle.addEventListener("click", function(e) { // Listen for click on puzzle pieces
+    if(startingState){
+        puzzle.className = "animate";
+        shiftSquare(e.target);
+    }
+});
+shuffleButton.addEventListener("click", shuffle); // Listen for click on shuffle
+initialize(); // Initialize puzzle position
 
 
   
@@ -150,7 +158,6 @@ function shuffle(){
     startingState = false;
 
     var adjacent, rand, randSquare;
-
 
     for(var i = 0; i < 300; i++){
         adjacent = getAdjacentSquares(getEmptySquare());
