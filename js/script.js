@@ -24,6 +24,7 @@ var finalMoves;
 
 
 
+
   
 
 /***!!! FUNCTIONS !!!***/
@@ -73,7 +74,13 @@ function moveCounter(){
     moves++;
     counter.innerHTML = moves;
 }
+
 /** Get and return puzzle square by row and col **/
 function getSquare(row, col){
     return document.getElementById("piece_" + row + "_" + col);
+}
+
+/** Get and return empty square **/
+function getEmptySquare(){
+    return puzzle.querySelector(".empty");
 }
