@@ -74,7 +74,28 @@ function moveCounter(){
     moves++;
     counter.innerHTML = moves;
 }
+/** Shift square into empty space **/
+function shiftSquare(square){
+    if(square.className != "empty"){
+        var emptySquare = getEmptyAdjacentSquare(square);
 
+        if(emptySquare){
+            var temptop = square.style.top;
+            var templeft = square.style.left;
+            var tempid = square.id;
+            // Swap id and style
+            square.style.top = emptySquare.style.top;
+            square.style.left = emptySquare.style.left;
+            square.id = emptySquare.id;
+
+            emptySquare.style.top = temptop;
+            emptySquare.style.left = templeft;
+            emptySquare.id = tempid;
+            
+            moveCounter();
+        }
+    }
+}
 /** Get and return puzzle square by row and col **/
 function getSquare(row, col){
     return document.getElementById("piece_" + row + "_" + col);
